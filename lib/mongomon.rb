@@ -64,11 +64,11 @@ class Mongomon
   end
 
   def format_database(name, time, size)
-    %{"#{hostname}/database/#{name}/sizeOnDisk",#{time},#{size}}
+    %{"#{hostname}/database/#{name}/sizeOnDisk/bytes",#{time},#{size}}
   end
 
   def format_collection_stat(db, coll, time, name, val)
-    %{"#{hostname}/database/#{db}/collection/#{coll}/#{name}",#{time},#{val}}
+    %{"#{hostname}/database/#{db}/collection/#{coll}/#{name}#{name =~ /size/i ? "/bytes" : ""}",#{time},#{val}}
   end
 
 end
